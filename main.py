@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import os
 
+
 class WebAutomation:
     def __init__(self):
         # Disable search engine choice screen
@@ -19,6 +20,7 @@ class WebAutomation:
         # Define driver, options and service
         service = Service('chromedriver-win64/chromedriver.exe')
         self.driver = webdriver.Chrome(options=chrome_options, service=service)
+
     def login(self, username, password):
         # Load the webpage
         self.driver.get('https://demoqa.com/login')
@@ -37,10 +39,8 @@ class WebAutomation:
         # Locate the Elements dropdown and Text Box
         elements = (WebDriverWait(self.driver, 5).
                     until(EC.
-                          visibility_of_element_located((
-                                                        By.XPATH,
-                                                            '//*[@id="app"]/div/div/div/div[1]/div/div/div[1]/span/div'
-                                                        ))))
+                    visibility_of_element_located((By.XPATH,
+                                                   '//*[@id="app"]/div/div/div/div[1]/div/div/div[1]/span/div'))))
         elements.click()
 
         text_box = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, 'item-0')))
@@ -72,8 +72,6 @@ class WebAutomation:
     def close(self):
         self.driver.quit()
 
-# username_field.send_keys('pythonusername')
-# password_field.send_keys('PythonStudent123!')
 
 if __name__ == "__main__":
     webautomation = WebAutomation()
